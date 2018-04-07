@@ -31,6 +31,11 @@ jobs:
         - make pdepend
         - make phpmd
         - make php_codesnifer
+        - make phpcpd
+        - make phpdcd
+        - make phpmetrics
+        - make twigcs
+        - make eslint
       php: '7.1'
 
     - stage: quality-assurance
@@ -40,4 +45,9 @@ jobs:
         - make pdepend
         - make phpmd
         - make php_codesnifer
+        - make phpcpd
+        - make phpdcd
+        - make phpmetrics
+        - make twigcs
+        - make eslint
       php: '7.2'

@@ -153,7 +153,7 @@ pdepend: artefacts
 		src/
 
 phpmd: ## PHP Mess Detector (https://phpmd.org)
-	$(QA) phpmd src text .phpmd.xml
+	$(QA) phpmd src text .phpmd.xml --exclude src/Migrations/*
 
 php_codesnifer: ## PHP_CodeSnifer (https://github.com/squizlabs/PHP_CodeSniffer)
 	$(QA) phpcs -v --standard=.phpcs.xml src
