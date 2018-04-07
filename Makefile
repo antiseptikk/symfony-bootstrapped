@@ -7,6 +7,8 @@ SYMFONY         = $(EXEC_PHP) bin/console
 COMPOSER        = $(EXEC_PHP) composer
 YARN            = $(EXEC_JS) yarn
 
+TRAVIS_FILE     = docker-compose.travis-ci.yml
+
 ## 
 ## Project
 ## -------
@@ -41,7 +43,10 @@ no-docker:
 	$(eval EXEC_PHP := )
 	$(eval EXEC_JS := )
 
-.PHONY: build kill install reset start stop clean no-docker
+travis:
+	$(eval DOCKER_COMPOSE := docker-compose --file $(TRAVIS_FILE))
+
+.PHONY: build kill install reset start stop clean no-docker travis
 
 ## 
 ## Utils

@@ -8,9 +8,8 @@ php:
 services:
   - docker
 
-variables:
-  DOCKER_DRIVER: overlay2
-  COMPOSE_FILE: "docker-compose.yml:docker-compose.travis-ci.yml"
+install:
+  - make travis install
 
-before_install:
-  - make install
+script:
+  - make no-docker test
