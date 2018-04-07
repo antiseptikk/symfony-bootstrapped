@@ -21,7 +21,7 @@ kill:
 	$(DOCKER_COMPOSE) down --volumes --remove-orphans
 
 install: ## Install and start the project
-install: .env build start assets db
+install: .env build start assets db-reset
 
 reset: ## Stop and start a fresh install of the project
 reset: kill install
@@ -48,8 +48,8 @@ no-docker:
 ## -----
 ## 
 
-db: ## Reset the database and load fixtures
-db: .env vendor
+db-reset: ## Reset the database and load fixtures
+db-reset: .env vendor
 	@$(EXEC_PHP) php -r 'echo "Wait database...\n"; set_time_limit(15); require __DIR__."/vendor/autoload.php"; (new \Symfony\Component\Dotenv\Dotenv())->load(__DIR__."/.env"); $$u = parse_url(getenv("DATABASE_URL")); for(;;) { if(@fsockopen($$u["host"].":".($$u["port"] ?? 3306))) { break; }}'
 	-$(SYMFONY) doctrine:database:drop --if-exists --force
 	-$(SYMFONY) doctrine:database:create --if-not-exists
@@ -72,7 +72,7 @@ watch: ## Run Webpack Encore in watch mode
 watch: node_modules
 	$(YARN) run watch
 
-.PHONY: db migration assets watch
+.PHONY: db-reset migration assets watch
 
 ## 
 ## Tests

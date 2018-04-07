@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 uid=$(stat -c %u /srv)
 gid=$(stat -c %g /srv)
 
@@ -18,10 +20,9 @@ sed -i -r "s/bar:x:\d+:/bar:x:$gid:/g" /etc/group
 sed -i "s/user = www-data/user = foo/g" /usr/local/etc/php-fpm.d/www.conf
 sed -i "s/group = www-data/group = bar/g" /usr/local/etc/php-fpm.d/www.conf
 
-user=$(grep ":x:$uid:" /etc/passwd | cut -d: -f1)
 if [ $# -eq 0 ]; then
     php-fpm
 else
-    echo gosu $user "$@"
-    exec gosu $user "$@"
+    echo su-exec foo "$@"
+    exec su-exec foo "$@"
 fi
