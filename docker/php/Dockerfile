@@ -1,6 +1,6 @@
 FROM composer
 
-FROM php:7.2-fpm-alpine
+FROM php:7.1-fpm-alpine
 
 COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 

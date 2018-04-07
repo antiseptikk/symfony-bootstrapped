@@ -43,11 +43,8 @@ no-docker:
 	$(eval EXEC_PHP := )
 	$(eval EXEC_JS := )
 
-travis:
-	$(eval DOCKER_COMPOSE := docker-compose --file $(TRAVIS_FILE))
-	$(eval EXEC_PHP := )
 
-.PHONY: build kill install reset start stop clean no-docker travis
+.PHONY: build kill install reset start stop clean no-docker
 
 ## 
 ## Utils
@@ -128,7 +125,7 @@ yarn.lock: package.json
 ## -----------------
 ## 
 
-QA        = docker run --rm -v `pwd`:/project mykiwi/phaudit:7.2
+QA        = docker run --rm -v `pwd`:/project mykiwi/phaudit:7.1
 ARTEFACTS = var/artefacts
 
 lint: ## Lints twig and yaml files
@@ -187,7 +184,12 @@ eslint: node_modules
 artefacts:
 	mkdir -p $(ARTEFACTS)
 
-.PHONY: lint lt ly phploc pdepend phpmd php_codesnifer phpcpd phpdcd phpmetrics php-cs-fixer apply-php-cs-fixer artefacts
+travis:
+    $(eval DOCKER_COMPOSE := docker-compose --file $(TRAVIS_FILE))
+    $(eval EXEC_PHP := )
+    $(eval QA := )
+
+.PHONY: lint lt ly phploc pdepend phpmd php_codesnifer phpcpd phpdcd phpmetrics php-cs-fixer apply-php-cs-fixer artefacts travis
 
 
 

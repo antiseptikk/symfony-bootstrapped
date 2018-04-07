@@ -17,7 +17,9 @@ services:
 
 install:
   - make travis install
+  - pear install pear/PHP_CodeSniffer
+  - phpenv rehash
 
 script:
   - make no-docker test
-  - make php_codesnifer
+  - make travis php_codesnifer
