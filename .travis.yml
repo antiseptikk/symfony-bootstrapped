@@ -18,11 +18,12 @@ services:
 install:
   - make travis install
 
+script:
+  - make no-docker test
+
 jobs:
   include:
-    - stage: test
-      script:
-        - make no-docker test
+
     - stage: quality-assurance
       script:
         - make lint
@@ -30,3 +31,13 @@ jobs:
         - make pdepend
         - make phpmd
         - make php_codesnifer
+      php: '7.1'
+
+    - stage: quality-assurance
+      script:
+        - make lint
+        - make phploc
+        - make pdepend
+        - make phpmd
+        - make php_codesnifer
+      php: '7.2'
