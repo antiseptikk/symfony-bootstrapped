@@ -20,3 +20,4 @@ install:
 
 script:
   - make no-docker test
+  - make php_codesnifer
