@@ -1,3 +1,6 @@
+# PHPSTORM conf files
+.idea
+
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/
