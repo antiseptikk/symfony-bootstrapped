@@ -187,7 +187,6 @@ artefacts:
 travis:
     $(eval DOCKER_COMPOSE := docker-compose --file $(TRAVIS_FILE))
     $(eval EXEC_PHP := )
-    $(eval QA := )
 
 .PHONY: lint lt ly phploc pdepend phpmd php_codesnifer phpcpd phpdcd phpmetrics php-cs-fixer apply-php-cs-fixer artefacts travis
 

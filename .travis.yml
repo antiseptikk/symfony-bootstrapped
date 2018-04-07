@@ -17,9 +17,16 @@ services:
 
 install:
   - make travis install
-  - pear install pear/PHP_CodeSniffer
-  - phpenv rehash
 
-script:
-  - make no-docker test
-  - make travis php_codesnifer
+jobs:
+  include:
+    - stage: test
+      script:
+        - make no-docker test
+    - stage: quality-assurance
+      script:
+        - make lint
+        - make phploc
+        - make pdepend
+        - make phpmd
+        - make php_codesnifer
