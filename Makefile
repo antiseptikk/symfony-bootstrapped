@@ -45,6 +45,7 @@ no-docker:
 
 travis:
 	$(eval DOCKER_COMPOSE := docker-compose --file $(TRAVIS_FILE))
+	$(eval EXEC_PHP := )
 
 .PHONY: build kill install reset start stop clean no-docker travis
 
