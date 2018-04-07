@@ -28,8 +28,8 @@ jobs:
       script:
         - make lint
         - make phploc
-        #- make pdepend
-        - make phpmd
+        - make pdepend
+        #- make phpmd
         - make php_codesnifer
         - make phpcpd
         - make phpdcd
@@ -42,8 +42,8 @@ jobs:
       script:
         - make lint
         - make phploc
-        #- make pdepend
-        - make phpmd
+        - make pdepend
+        #- make phpmd
         - make php_codesnifer
         - make phpcpd
         - make phpdcd
