@@ -12,6 +12,7 @@ install:
   - make travis install
 
 before_script:
+  - sudo /etc/init.d/mysql stop
   - cp .env.travis .env
 
 script:
