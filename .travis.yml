@@ -8,12 +8,11 @@ php:
 services:
   - docker
 
+before_install:
+  - sudo /etc/init.d/mysql stop
+
 install:
   - make travis install
-
-before_script:
-  - sudo /etc/init.d/mysql stop
-  - cp .env.travis .env
 
 script:
   - make no-docker test
